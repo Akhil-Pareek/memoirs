@@ -79,6 +79,7 @@ export default function Booking() {
       placeholder: "YOUR NOTES",
     },
   ];
+  console.log('arrived')
 
   return (
     <section className="px-5 xl:px-34 ">
