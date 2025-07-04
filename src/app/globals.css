@@ -1,26 +1,109 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-dimBlack: #3d465a;
+  --color-lightCream: #f4f4f6;
+  --color-primaryGolden: #736645;
+  --color-grayishBlue: #e7e9ed;
+  --color-warmGray: #f4f0ed;
+  --color-neutralGray: #5d5d5d;
+  --color-darkGray: #2e2e2e;
+  /* --color-secondaryGolden: #F7F0E8; */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
+  --font-rubik: var(--font-rubik);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-ebgaramond: "EB Garamond", serif;
+  --font-cormorant: "Cormorant Garamond", serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+/*---------------------- background image ------------- */
+
+.bg-testimonial {
+  background-image: url("/home/testimonial/bgTestimonial.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+/*---------------------- background image ------------- */
+
+/* loader */
+
+.loader {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #0000;
+  border-right-color: #06183a;
+  position: relative;
+  animation: l24 1s infinite linear;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: inherit;
+  animation: inherit;
+  animation-duration: 2s;
+}
+
+.loader:after {
+  animation-duration: 4s;
+}
+
+.white-loader {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #0000;
+  border-right-color: #ffffff;
+  position: relative;
+  animation: l24 1s infinite linear;
+}
+
+.white-loader:before,
+.white-loader:after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: inherit;
+  animation: inherit;
+  animation-duration: 2s;
+}
+
+.white-loader:after {
+  animation-duration: 4s;
+}
+
+@keyframes l24 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* loader */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* --background: #0a0a0a; */
+    --foreground: #ededed;
+  }
+}
+
+.shadow-full {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
