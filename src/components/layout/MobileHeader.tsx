@@ -18,33 +18,22 @@ export default function MobileHeader({
   menuItems,
   isScrolled,
 }: IMobileHeader) {
-  // for stopping background scrolling
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     document.body.style.overflow = "hidden";
-  //   } else {
-  //     document.body.style.overflow = "auto";
-  //   }
-  //   return () => {
-  //     document.body.style.overflow = "auto";
-  //   };
-  // }, [isOpen]);
-
   return (
     <div
-      className={`xl:hidden block font-cormorant  fixed z-[990] px-5 lg:px-11  w-full  h-20
-    ${isScrolled ? "bg-white/20 backdrop-blur-md  shadow-sm " : "bg-transparent"}
-    `}
+      className={`lg:hidden block font-cormorant  fixed z-[990] px-5 lg:px-11  w-full  h-20
+    ${
+      isScrolled ? "bg-warmGray/20 backdrop-blur-md  shadow-sm " : "bg-warmGray/20 backdrop-blur-md"
+    }`}
     >
       {/* Hamburger Menu */}
       <div className="flex justify-between h-full items-center ">
         <Link href="/">
           <Image
             alt="logo"
-            src={AppAssets?.whiteLogo}
+            src={AppAssets?.newLogo}
             width={1000}
             height={1000}
-            className="w-[70%] lg:mx-auto"
+            className="w-[30%] lg:mx-auto"
           />
         </Link>
         <div
@@ -54,17 +43,19 @@ export default function MobileHeader({
         >
           {/* First Bar */}
           <span
-            className={`block h-1 w-6   bg-white rounded transition-transform duration-300 ${
+            className={`block h-1 w-6   bg-[#d1192e] rounded transition-transform duration-300 ${
               isOpen ? "rotate-45 translate-y-2.5" : ""
             }`}
           ></span>
           {/* Middle Bar */}
           <span
-            className={`block h-1 w-6 rounded  bg-white transition-all duration-300 ${isOpen ? "opacity-0" : ""}`}
+            className={`block h-1 w-6 rounded  bg-[#d1192e] transition-all duration-300 ${
+              isOpen ? "opacity-0" : ""
+            }`}
           ></span>
           {/* Last Bar */}
           <span
-            className={`block h-1 w-6 rounded bg-white transition-transform duration-300 ${
+            className={`block h-1 w-6 rounded bg-[#d1192e] transition-transform duration-300 ${
               isOpen ? "-rotate-45 -translate-y-2.5" : ""
             }`}
           ></span>
@@ -73,7 +64,7 @@ export default function MobileHeader({
 
       {/* side bar */}
       <div
-        className={` mt-2  w-full  bg-primaryGolden/80 backdrop-blur-md   rounded-lg 
+        className={` mt-2  w-full  bg-warmGray text-darkMutedRed  backdrop-blur-md   rounded-lg 
               transition-all duration-500 ease-in-out transform ${
                 isOpen ? "translate-y-0" : "-translate-y-[600px] "
               }

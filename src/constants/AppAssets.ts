@@ -1,11 +1,15 @@
 export class AppAssets {
+    static newLogo = '/common/logo/memoirs-logo.png';
     static blackLogo = '/common/logo/blackLogo.webp';
     static whiteLogo = '/common/logo/whiteLogo.webp';
+    static logo = '/common/logo/bannerLogo.png';
 
     // ---------------home-----------------
 
     // banner
-    static banner = '/home/banner/homeBanner.webp';
+    static banner = '/home/banner/2.jpg';
+    // static banner = '/home/banner/DSC04488-Edit.jpg';
+    // static banner = '/home/banner/homeBanner.webp';
 
     // instagram
     static post1 = '/home/instagram/post1.webp';
@@ -25,5 +29,28 @@ export class AppAssets {
     // testimonial
     static bgTestimonial = '/home/testimonial/bgTestimonial.webp';
     static couple = '/home/testimonial/couple.webp';
+    
+    // about us
+    static aboutUs = '/aboutUs/vivek_krishnan.jpg';
+    static aboutUsBanner = '/aboutUs/aboutUsBanner.webp';
+    
+    // contact us
+    static contactUsBanner = '/contactUs/contactUsBanner.webp';
+    
+    // home capturing 
+    static capOne = '/home/capturing/cap01.jpg';
+    static flowerOne = '/home/capturing/flower01.png';
+    static flowerTwo = '/home/capturing/flower02.png';
+    
+    // parallax scrolling
+    static parallax = '/home/parallax.png';
+    
+    // our work
+    static ourWorkBanner = '/ourWork/ourWorkBanner.webp';
+    
+    // our work discover
+    static discoverOne = '/ourWork/discover/one.webp';
+    static discoverTwo = '/ourWork/discover/two.webp';
+    static discoverThree = '/ourWork/discover/three.webp';
 
 }

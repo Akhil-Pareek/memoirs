@@ -1,7 +1,7 @@
 import { AppAssets } from "@/constants/AppAssets";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaPhone } from "react-icons/fa";
+import { FaPhone, FaYoutube } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoMail } from "react-icons/io5";
 import { PiInstagramLogoFill } from "react-icons/pi";
@@ -9,24 +9,22 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 export default function Footer() {
   const socialIcons = [
     {
-      icon: <FaFacebookF />,
-      url: " https://www.facebook.com/chirayucancerhospital/",
-      name: "Facebook",
-      className: " hover:text-blue-500 h-8 w-8",
-    },
-
-    {
       icon: <PiInstagramLogoFill />,
-      url: "https://www.instagram.com/chirayucancerhospital/",
+      url: "http://instagram.com/memoirs_jaipur/?hl=en",
+      name: "Instagram",
+      className: " hover:text-red-300 h-8 w-8",
+    },
+    {
+      icon: <FaYoutube />,
+      url: "https://www.youtube.com/@memoirs_photography",
       name: "Instagram",
       className: " hover:text-red-300 h-8 w-8",
     },
   ];
   const navLinks = [
     { href: "/", label: "HOME" },
-    { href: "/our-story", label: "OUR STORY" },
     { href: "/our-work", label: "OUR WORK" },
-    { href: "/wedding-tales", label: "WEDDING TALES" },
+    { href: "/about-us", label: "ABOUT US" },
     { href: "/contact-us", label: "CONTACT US" },
   ];
   return (
@@ -113,7 +111,7 @@ export default function Footer() {
           </form>
           <div className="mt-4">
             <h4 className="text-lg font-semibold mb-2 uppercase tracking-widest">
-              Follow Me
+              Follow Us
             </h4>
             <div className="flex items-center gap-4 mt-3  justify-start">
               {socialIcons.map((item: any, index: number) => (

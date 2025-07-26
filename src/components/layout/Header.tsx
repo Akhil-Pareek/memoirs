@@ -1,21 +1,20 @@
 "use client";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import MobileHeader from "./MobileHeader";
-import Image from "next/image";
 import { AppAssets } from "@/constants/AppAssets";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import MobileHeader from "./MobileHeader";
 
 export default function Header() {
   const [state, setState] = useState({
     isOpen: false,
     hasScrolled: false,
   });
-
+  const [isScrolled, setIsScrolled] = useState(false);
   const navLinks = [
     { href: "/", label: "HOME" },
-    { href: "/our-story", label: "OUR STORY" },
     { href: "/our-work", label: "OUR WORK" },
-    { href: "/wedding-tales", label: "WEDDING TALES" },
+    { href: "/about-us", label: "ABOUT US" },
     { href: "/contact-us", label: "CONTACT US" },
   ];
 
@@ -31,28 +30,63 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <>
       <header
-        className={`text-sm text-white font-cormorant fixed z-50 w-full md:py-3 space-y-5 flex flex-col lg:items-center transition-all duration-300 ${
-          state.hasScrolled
-            ? "bg-white/20 backdrop-blur-md  shadow-sm"
-            : "bg-transparent"
-        }`}
+        className={`text-sm text-darkMutedRed backdrop-blur-md shadow-sm  font-cormorant z-50 w-full lg:py-3 space-y-5 flex justify-center gap-10 items-center transition-all duration-300 
+          ${
+            isScrolled
+              ? "animate-movenav  w-full bg-warmGray/20 duration-700 top-0 h-fit fixed "
+              : "absolute  mx-auto "
+          }
+          `}
       >
-        <Link href="/" className="hidden xl:block">
+        {/* <header
+        className={`text-sm  backdrop-blur-md text-black fixed  shadow-sm  font-cormorant z-50 w-full lg:py-3 space-y-5 flex justify-center gap-10 items-center transition-all duration-300 
+          ${
+            isScrolled
+              ? "animate-movenav  w-full bg-warmGray/20 duration-700 top-0   h-fit"
+              : "relative  mx-auto "
+          }
+          `}
+      > */}
+        <div className="hidden lg:block">
+          <div className="flex gap-12 mt-5">
+            {navLinks.slice(0, 2).map((link, index) => (
+              <Link key={index} href={link?.href} className="">
+                {link?.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <Link href="/" className="hidden lg:block">
           <Image
             alt="logo"
-            src={AppAssets?.whiteLogo}
+            src={AppAssets?.newLogo}
             width={1000}
             height={1000}
-            className="w-[30%] lg:w-[70%] lg:mx-auto"
+            className="w-[30%] lg:w-[70%] xl:w-[40%] mt-2 lg:mx-auto"
           />
         </Link>
 
-        <div className="hidden xl:block">
+        <div className="hidden lg:block">
           <div className="flex gap-12">
-            {navLinks.map((link, index) => (
+            {navLinks.slice(-2).map((link, index) => (
               <Link key={index} href={link?.href}>
                 {link?.label}
               </Link>
@@ -63,10 +97,8 @@ export default function Header() {
 
       <MobileHeader
         isOpen={state.isOpen}
-        setIsOpen={(value) =>
-          setState((prev) => ({ ...prev, isOpen: value }))
-        }
-          isScrolled={state.hasScrolled}
+        setIsOpen={(value) => setState((prev) => ({ ...prev, isOpen: value }))}
+        isScrolled={state.hasScrolled}
         menuItems={navLinks}
       />
     </>

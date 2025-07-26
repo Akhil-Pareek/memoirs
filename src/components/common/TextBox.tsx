@@ -32,7 +32,7 @@ const TextBox = ({
   maxLength,
   onChange,
   labelStyle = " text-labelText font-poppins font-normal text-sm 2xl:text-base 3xl:font-medium ",
-  className = " relative rounded flex items-center justify-between pl-2 py-1 3xl:p-4 w-full border",
+  className = " relative rounded flex items-center justify-between pl-2 py-1 3xl:p-4 w-full",
   required = false,
 }: TextboxProps) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,14 +42,6 @@ const TextBox = ({
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
-
-  // const handleChange = (value: any) => {
-  //   if (onChange) {
-  //     onChange(value); // Call the custom onChange handler if provided
-  //   } else {
-  //     formik?.setFieldValue(id, value); // Update Formik's value
-  //   }
-  // };
 
   const handleChange = (value: any) => {
     if (type === "email") {
@@ -83,11 +75,7 @@ const TextBox = ({
         </label>
       )}
 
-      <div
-        className={`${className}   ${
-          touched && error ? "border " : ""
-        }`}
-      >
+      <div className={`${className}   ${touched && error ? "border-b border-red-500 " : ""}`}>
         {type !== "color" &&
           (type !== "textarea" ? (
             <input

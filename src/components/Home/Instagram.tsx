@@ -26,7 +26,7 @@ export default function Instagram() {
     { src: AppAssets?.post6, link: "https://www.instagram.com/p/POST_ID_6" },
   ];
   return (
-    <section className="bg-grayishBlue py-12 space-y-8 ">
+    <section className="bg-white text-darkMutedRed py-12 space-y-8 ">
       <div className="text-2xl text-center pt-12">
         FOLLOW US ON INSTAGRAM{" "}
         <Link

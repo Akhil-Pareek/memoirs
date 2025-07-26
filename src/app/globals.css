@@ -8,7 +8,18 @@
   --color-warmGray: #f4f0ed;
   --color-neutralGray: #5d5d5d;
   --color-darkGray: #2e2e2e;
-  /* --color-secondaryGolden: #F7F0E8; */
+  --color-darkMutedRed: #3f2021;
+  --animate-movenav: movenav 1s ease-in-out forwards;
+}
+
+@keyframes movenav {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @theme inline {
@@ -35,7 +46,12 @@ body {
   background-position: center;
 }
 
-/*---------------------- background image ------------- */
+.bg-parallax {
+  background-image: url("/home/parallax.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0% 90%;
+}
 
 /* loader */
 
@@ -107,3 +123,4 @@ body {
 .shadow-full {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+

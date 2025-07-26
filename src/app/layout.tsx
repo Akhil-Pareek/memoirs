@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import NextTopLoader from "nextjs-toploader";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -54,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={` ${cormorant.variable} antialiased`}>
+        <NextTopLoader color="#d1192e" />
         <Header />
         {children}
         <Footer />
