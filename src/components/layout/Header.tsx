@@ -2,10 +2,12 @@
 import { AppAssets } from "@/constants/AppAssets";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import MobileHeader from "./MobileHeader";
 
 export default function Header() {
+  const pathName = usePathname();
   const [state, setState] = useState({
     isOpen: false,
     hasScrolled: false,
@@ -55,19 +57,16 @@ export default function Header() {
           }
           `}
       >
-        {/* <header
-        className={`text-sm  backdrop-blur-md text-black fixed  shadow-sm  font-cormorant z-50 w-full lg:py-3 space-y-5 flex justify-center gap-10 items-center transition-all duration-300 
-          ${
-            isScrolled
-              ? "animate-movenav  w-full bg-warmGray/20 duration-700 top-0   h-fit"
-              : "relative  mx-auto "
-          }
-          `}
-      > */}
         <div className="hidden lg:block">
           <div className="flex gap-12 mt-5">
             {navLinks.slice(0, 2).map((link, index) => (
-              <Link key={index} href={link?.href} className="">
+              <Link
+                key={index}
+                href={link?.href}
+                className={` ${
+                  pathName === link?.href ? "border-b border-darkMutedRed" : ""
+                }`}
+              >
                 {link?.label}
               </Link>
             ))}
@@ -87,7 +86,13 @@ export default function Header() {
         <div className="hidden lg:block">
           <div className="flex gap-12">
             {navLinks.slice(-2).map((link, index) => (
-              <Link key={index} href={link?.href}>
+              <Link
+                key={index}
+                href={link?.href}
+                className={`${
+                  pathName === link?.href ? "border-b border-darkMutedRed" : ""
+                }`}
+              >
                 {link?.label}
               </Link>
             ))}

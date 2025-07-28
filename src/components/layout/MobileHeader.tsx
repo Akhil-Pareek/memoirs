@@ -3,7 +3,6 @@ import { AppAssets } from "@/constants/AppAssets";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 interface IMobileHeader {
   isOpen: boolean;
@@ -18,11 +17,14 @@ export default function MobileHeader({
   menuItems,
   isScrolled,
 }: IMobileHeader) {
+  const pathName = usePathname();
   return (
     <div
       className={`lg:hidden block font-cormorant  fixed z-[990] px-5 lg:px-11  w-full  h-20
     ${
-      isScrolled ? "bg-warmGray/20 backdrop-blur-md  shadow-sm " : "bg-warmGray/20 backdrop-blur-md"
+      isScrolled
+        ? "bg-warmGray/20 backdrop-blur-md  shadow-sm "
+        : "bg-warmGray/20 backdrop-blur-md"
     }`}
     >
       {/* Hamburger Menu */}
@@ -76,7 +78,10 @@ export default function MobileHeader({
             <div key={index} className="relative py-2">
               <Link
                 href={item?.href}
-                className="flex gap-2 items-center  w-fit font-bold text-lg   text-left"
+                className={`flex gap-2 items-center  w-fit font-bold text-lg text-left
+                
+                ${pathName === item?.href ? "border-b border-darkMutedRed" : ""}
+              `}
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}

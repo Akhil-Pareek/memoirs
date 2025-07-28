@@ -25,7 +25,7 @@ const TextBox = ({
   type = "text",
   formik,
   label,
-  input_className,
+  input_className="text-black",
   disabled = false,
   hideError = false,
   min,
@@ -93,7 +93,7 @@ const TextBox = ({
               onChange={(e: any) => handleChange(e?.target?.value)}
               onBlur={formik?.handleBlur(id)}
               placeholder={placeholder}
-              className={` ${input_className}  text-black outline-none w-full 3xl:text-2xl`}
+              className={` ${input_className} outline-none w-full 3xl:text-2xl`}
             />
           ) : (
             <textarea
@@ -128,7 +128,7 @@ const TextBox = ({
         )}
       </div>
       {touched && error && !hideError && (
-        <p className=" text-sm  text-red-500 3xl:text-lg">{error}</p>
+        <p className=" text-sm  text-red-500">{error}</p>
       )}
     </div>
   );

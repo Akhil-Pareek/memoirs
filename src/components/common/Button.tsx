@@ -18,12 +18,12 @@ interface IButton {
 }
 
 const variantStyles: Record<string, string> = {
-  primary: "bg-primaryBlue text-white ",
-  secondary: "bg-secondaryBlue text-white ",
-  white: "bg-white text-secondaryBlue ",
+  primary: "",
+  secondary: " text-white ",
+  white: "bg-white ",
   danger: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600",
   ghost:
-    "bg-transparent text-secondaryBlue border border-gray-200 hover:bg-gray-100 ",
+    "bg-transparent  border border-gray-200 hover:bg-gray-100 ",
 };
 
 export default function Button({

@@ -1,24 +1,33 @@
+"use client";
 import { AppAssets } from "@/constants/AppAssets";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaPhone, FaYoutube } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { IoMail } from "react-icons/io5";
+import { IoLogoWhatsapp, IoMail } from "react-icons/io5";
 import { PiInstagramLogoFill } from "react-icons/pi";
 
 export default function Footer() {
+  const pathName = usePathname();
   const socialIcons = [
     {
-      icon: <PiInstagramLogoFill />,
+      icon: <PiInstagramLogoFill className="w-5 h-5" />,
       url: "http://instagram.com/memoirs_jaipur/?hl=en",
       name: "Instagram",
-      className: " hover:text-red-300 h-8 w-8",
+      className: " hover:text-red-500 h-8 w-8",
     },
     {
-      icon: <FaYoutube />,
+      icon: <FaYoutube className="w-5 h-5" />,
       url: "https://www.youtube.com/@memoirs_photography",
-      name: "Instagram",
-      className: " hover:text-red-300 h-8 w-8",
+      name: "Youtube",
+      className: " hover:text-red-500 h-8 w-8",
+    },
+    {
+      icon: <IoLogoWhatsapp className="w-5 h-5" />,
+      url: "https://wa.me/9024577771?text=Hello%20Akshay%2C%20I%20came%20across%20your%20work%20and%20I%E2%80%99m%20interested%20in%20your%20services.%20Could%20you%20please%20share%20more%20information%3F",
+      name: "WhatsApp",
+      className: "hover:text-green-500 h-8 w-8",
     },
   ];
   const navLinks = [
@@ -85,7 +94,12 @@ export default function Footer() {
           <ul className="space-y-3">
             {navLinks.map((item, index) => (
               <li key={index}>
-                <Link href={item?.href} className="hover:underline">
+                <Link
+                  href={item?.href}
+                  className={`${
+                    pathName === item?.href ? " text-red-500" : ""
+                  }`}
+                >
                   {item?.label}
                 </Link>
               </li>

@@ -2,7 +2,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "../common/Button";
-import { MdArrowOutward } from "react-icons/md";
 import TextBox from "../common/TextBox";
 
 export default function Booking() {
@@ -79,7 +78,6 @@ export default function Booking() {
       placeholder: "YOUR NOTES",
     },
   ];
-  console.log('arrived')
 
   return (
     <section className="px-5 xl:px-34 ">

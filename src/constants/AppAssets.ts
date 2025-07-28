@@ -36,6 +36,7 @@ export class AppAssets {
     
     // contact us
     static contactUsBanner = '/contactUs/contactUsBanner.webp';
+    static formImage = '/contactUs/formPic.jpg';
     
     // home capturing 
     static capOne = '/home/capturing/cap01.jpg';
