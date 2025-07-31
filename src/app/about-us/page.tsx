@@ -3,6 +3,7 @@ import { AppAssets } from "@/constants/AppAssets";
 import Image from "next/image";
 
 export default function page() {
+  console.log("hey")
   return (
     <section>
       <Banner srcUrl={AppAssets?.aboutUsBanner} bannerLabel="About Us" />
