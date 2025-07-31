@@ -40,7 +40,7 @@ export default function Footer() {
     <footer className="bg-black text-white py-16 space-y-10 font-cormorant">
       <Image
         alt="logo"
-        src={AppAssets?.whiteLogo}
+        src={AppAssets?.newLogo}
         width={1000}
         height={1000}
         className=" w-[50%] md:w-1/4 xl:w-[15%] mx-auto"

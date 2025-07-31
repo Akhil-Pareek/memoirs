@@ -7,25 +7,27 @@ export default function Discover() {
     {
       src: AppAssets?.discoverOne,
       label: "Pre Weddings",
-      slug: "pre-weddings",
+      slug: "pre-wedding",
     },
     {
       src: AppAssets?.discoverThree,
       label: "Real Weddings",
-      slug: "real-weddings",
+      slug: "real-wedding",
     },
 
     {
       src: AppAssets?.discoverOne,
       label: "Films",
-      slug: "films",
+      slug: "film",
     },
   ];
 
   return (
     <section className="text-darkMutedRed font-cormorant py-16 space-y-12 px-4">
       <div className="flex flex-col items-center gap-5 ">
-        <p className="text-5xl text-center">Discover the love stories we've captured</p>
+        <p className="text-5xl text-center">
+          Discover the love stories we've captured
+        </p>
         <p className="text-2xl">In every frame, love speaks volumes.</p>
         <p className="text-lg max-w-5xl mx-auto text-center">
           Take a look at the love stories we’ve captured, frozen in time. In
@@ -39,9 +41,10 @@ export default function Discover() {
       </div>
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 xl:w-[85%] mx-auto">
         {discoverItems.map((item, index) => (
-          <div
+          <Link
+            href={`/our-work/${item?.slug}`}
             key={index}
-            className="w-full group shadow-full relative rounded-2xl border-t-5 border-primaryGolden/[60%] transition-all duration-300 hover:border-primaryGolden overflow-hidden"
+            className="w-full group shadow-full relative rounded-2xl border-t-5 border-primaryGolden/[60%] transition-all duration-300 hover:border-[#d1192e] overflow-hidden"
           >
             {/* Left white overlay */}
             <div className="absolute top-0 left-0 h-full w-[50%] bg-white/5 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10"></div>
@@ -61,16 +64,13 @@ export default function Discover() {
             </div>
 
             {/* Link with animated underline */}
-            <Link
-              href={`/our-work/${item?.slug}`}
-              className="group text-center bg-white  w-[50%] py-1.5 rounded-2xl  font-semibold transition-all duration-300 text-primaryGolden absolute bottom-[8%] left-[25%] z-20"
-            >
+            <div className="group text-center bg-white  w-[50%] py-1.5 rounded-2xl  font-semibold transition-all duration-300 text-primaryGolden absolute bottom-[8%] left-[25%] z-20">
               <div className="relative inline-block">
                 <span>{item?.label}</span>
                 <div className="h-[2px] w-2 bg-primaryGolden group-hover:w-full transition-all duration-300 mx-auto"></div>
               </div>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </div>
     </section>

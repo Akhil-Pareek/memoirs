@@ -31,7 +31,7 @@ export class AppAssets {
     static couple = '/home/testimonial/couple.webp';
     
     // about us
-    static aboutUs = '/aboutUs/vivek_krishnan.jpg';
+    static vivek = '/aboutUs/vivek_krishnan.jpg';
     static aboutUsBanner = '/aboutUs/aboutUsBanner.webp';
     
     // contact us
@@ -44,7 +44,7 @@ export class AppAssets {
     static flowerTwo = '/home/capturing/flower02.png';
     
     // parallax scrolling
-    static parallax = '/home/parallax.png';
+    static parallax = '/home/parallax.webp';
     
     // our work
     static ourWorkBanner = '/ourWork/ourWorkBanner.webp';

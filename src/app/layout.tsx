@@ -1,3 +1,4 @@
+import GlobalLayout from "@/layout/GlobalLayout";
 import type { Metadata } from "next";
 import {
   Cormorant_Garamond,
@@ -6,10 +7,9 @@ import {
   Geist_Mono,
   Rubik,
 } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import NextTopLoader from "nextjs-toploader";
+import "./globals.css";
+import AppContextProvider from "@/providers/AppProvider";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -56,9 +56,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={` ${cormorant.variable} antialiased`}>
         <NextTopLoader color="#d1192e" />
-        <Header />
-        {children}
-        <Footer />
+        {/* <Header /> */}
+        <AppContextProvider>
+          <GlobalLayout>{children}</GlobalLayout>
+        </AppContextProvider>
+        {/* <Footer /> */}
       </body>
     </html>
   );

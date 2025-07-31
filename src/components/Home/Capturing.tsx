@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Capturing() {
   return (
-    <section className="overflow-hidden bg-warmGray py-16 px-4 relative h-[70vh] lg:h-[50vh] xl:h-screen">
+    <section className="overflow-hidden bg-warmGray py-16 px-4 relative h-[90vh] lg:h-[50vh] xl:h-screen">
       <div className=" flex justify-center items-center h-full">
         {/* Left Image */}
         <div className=" absolute -left-5 top-2 xl:-left-10 xl:top-8 w-[25%]">
@@ -18,23 +18,40 @@ export default function Capturing() {
 
         {/* Center Text */}
         <div className="xl:w-1/2 flex flex-col justify-center items-center gap-10 text-darkMutedRed  h-full">
-          <p className="uppercase tracking-widest text-xs">
+          <p className="uppercase tracking-widest text-xs text-center">
             Experience Real Emotions, Real Moments, Real Weddings
           </p>
-          <h1 className="text-3xl xl:text-5xl font-bold">
-            Capturing real emotions and <br />
-            intimate moments, preserving <br />
+          <h1 className="text-3xl xl:text-5xl font-bold text-center">
+            Capturing real emotions and
+            <span className="hidden xl:inline">
+              <br />
+            </span>
+            intimate moments, preserving{" "}
+            <span className="hidden xl:inline">
+              <br />
+            </span>
             your special day for eternity
           </h1>
-          <p className=" leading-relaxed text-center">
-            Your wedding day is one of the most important days of <br /> your
-            life, filled with love, joy, and unforgettable moments.
-          </p>
-          <p className=" leading-relaxed text-center">
-            Our candid photography and videography services ensure <br /> you
-            can relive the genuine emotions and unforgettable <br /> moments of
-            your wedding day for years to come.
-          </p>
+          <div className="space-y-5" > 
+            <p className=" leading-relaxed text-center">
+              Your wedding day is one of the most important days of
+              <span className="hidden xl:inline">
+                <br />
+              </span>
+              your life, filled with love, joy, and unforgettable moments.
+            </p>
+            <p className=" leading-relaxed text-center">
+              Our candid photography and videography services ensure{" "}
+              <span className="hidden xl:inline">
+                <br />
+              </span>{" "}
+              you can relive the genuine emotions and unforgettable{" "}
+              <span className="hidden xl:inline">
+                <br />
+              </span>{" "}
+              moments of your wedding day for years to come.
+            </p>
+          </div>
         </div>
 
         {/* Right Image */}

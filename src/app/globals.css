@@ -127,3 +127,27 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
+/* ------------------- toaster --------------- */
+
+/* Make the close (X) icon gray for all toasts */
+.Toastify__close-button {
+  color: var(--color-mutedGray) !important;
+  opacity: 1 !important;
+  transition: none !important; /* Optional: disable fade-in effect */
+}
+
+/* Success Toast */
+.Toastify__toast--success {
+  background-color: green !important;
+  color: white !important;
+}
+
+/* Error Toast */
+.Toastify__toast--error {
+  background-color: red !important;
+  color: white !important; /* Tailwind red-100 */
+}
+
+
+/* -------------------------------------------------------- */

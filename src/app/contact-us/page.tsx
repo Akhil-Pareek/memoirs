@@ -3,14 +3,16 @@ import Banner from "@/components/Banner";
 import Button from "@/components/common/Button";
 import TextBox from "@/components/common/TextBox";
 import { AppAssets } from "@/constants/AppAssets";
+import { ToastHelper } from "@/utils/toastHelper";
 import { useFormik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { FaPhoneVolume, FaYoutube } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-import { IoLocationSharp, IoLogoWhatsapp } from "react-icons/io5";
+import { IoLocationSharp } from "react-icons/io5";
 import { PiInstagramLogoFill } from "react-icons/pi";
+import { TbBrandWhatsappFilled } from "react-icons/tb";
 import * as Yup from "yup";
 
 export default function page() {
@@ -50,19 +52,19 @@ export default function page() {
       icon: <BiSolidUserCircle className="w-5 h-5 text-primaryGolden" />,
       values: [
         {
-          icon: <PiInstagramLogoFill className="w-4 h-4" />,
+          icon: <PiInstagramLogoFill className="w-5 h-5" />,
           url: "http://instagram.com/memoirs_jaipur/?hl=en",
           name: "Instagram",
           className: "text-primaryGolden hover:text-red-500 ",
         },
         {
-          icon: <FaYoutube className="w-4 h-4" />,
+          icon: <FaYoutube className="w-5 h-5" />,
           url: "https://www.youtube.com/@memoirs_photography",
           name: "Youtube",
           className: "text-primaryGolden hover:text-red-500",
         },
         {
-          icon: <IoLogoWhatsapp className="w-4 h-4" />,
+          icon: <TbBrandWhatsappFilled className="w-5 h-5" />,
           url: "https://wa.me/9024577771?text=Hello%20Akshay%2C%20I%20came%20across%20your%20work%20and%20I%E2%80%99m%20interested%20in%20your%20services.%20Could%20you%20please%20share%20more%20information%3F",
           name: "WhatsApp",
           className: "text-primaryGolden hover:text-green-500",
@@ -139,40 +141,36 @@ export default function page() {
       dates: "",
       error: "",
     },
-    validationSchema: contactUsSchema,
+    // validationSchema: contactUsSchema,
     onSubmit: async (values, { resetForm }) => {
       // Convert file to Base64 before sending
       console.log("values", values);
+      const id = ToastHelper.loading("Submitting");
       try {
         const response = await fetch("/api/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...values }),
         });
-
+        console.log("response", response);
         if (response.ok) {
+          ToastHelper.success(id, "Success");
           const result = await response.json();
-          // setPopup({
-          //   type: "success",
-          //   message: "Submission Successful",
-          //   description: result.message,
-          // });
+          console.log("result", result);
+
           resetForm();
         } else {
           throw response;
         }
       } catch (error: any) {
-        // setPopup({
-        //   type: "error",
-        //   message: "Submission Failed",
-        //   description: error.statusText,
-        // });
+        console.error("error", error?.statusText);
+        ToastHelper.error(id, error?.statusText);
       }
     },
   });
   return (
     <div className="font-cormorant bg-[#f3eae4] text-darkMutedRed">
-    {/* <div className="font-cormorant bg-warmGray/50 text-darkMutedRed"> */}
+      {/* <div className="font-cormorant bg-warmGray/50 text-darkMutedRed"> */}
       <Banner srcUrl={AppAssets?.contactUsBanner} bannerLabel="Contact Us" />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 space-y-20">
         <section className="font-cormorant">
@@ -206,14 +204,14 @@ export default function page() {
                   <div className="text-sm text-gray-600 space-y-2">
                     {/* Check if it's social links */}
                     {item.label === "Connect with us" ? (
-                      <div className="flex gap-3">
+                      <div className="flex gap-5">
                         {item.values.map((val: any, i) => (
                           <Link
                             key={i}
                             href={val.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`p-1 border group rounded-full transition-transform duration-300 transform  `}
+                            className="group rounded-full transition-transform duration-300 transform"
                           >
                             <p
                               className={`group-hover:scale-125 transition-all duration-300 ${val.className}`}
@@ -275,7 +273,7 @@ export default function page() {
             </div>
             <form
               onSubmit={formik.handleSubmit}
-              className="space-y-8 overflow-y-scroll hide-scrollbar w-full h-full lg:w-1/2 p-3 xl:p-5 absolute md:static bg-white/10 rounded-md text-white backdrop-blur-md xl:bg-white"
+              className="space-y-8 overflow-y-scroll hide-scrollbar w-full h-full lg:w-1/2 p-3 xl:p-5 bg-white/10 rounded-md text-white backdrop-blur-md xl:bg-white"
             >
               <div className="space-y-5 grid md:grid-cols-2 lg:grid-cols-1 md:gap-x-2">
                 {leadGenerate.map(
@@ -287,8 +285,8 @@ export default function page() {
                       formik={formik}
                       type={type === "Email" ? "email" : "text"}
                       placeholder={placeholder}
-                      input_className="text-sm text-white md:text-darkMutedRed font-medium"
-                      className="w-full  p-3 border-b border-white md:border-primaryGolden rounded-md"
+                      input_className="text-sm text-darkMutedRed font-medium"
+                      className="w-full  p-3 border-b border-primaryGolden rounded-md"
                     />
                   )
                 )}
@@ -298,7 +296,7 @@ export default function page() {
                 loading={formik.isSubmitting}
                 disabled={formik.isSubmitting}
                 text="Submit"
-                className="text-left bg-white text-primaryGolden md:bg-primaryGolden md:text-white cursor-pointer  w-full md:w-fit px-20  rounded-sm"
+                className="text-left bg-primaryGolden text-white cursor-pointer  w-full md:w-fit px-20  rounded-sm"
               />
             </form>
           </div>
