@@ -57,6 +57,18 @@ export default function ImageGallery({ images }: Props) {
         index={lightboxIndex}
         slides={images.map((img) => ({ src: img.src }))}
         plugins={[Thumbnails]}
+        render={{
+          slide: ({ slide }) => (
+            <div className="w-screen h-screen flex items-center justify-center bg-black relative">
+              <Image
+                src={slide.src}
+                alt="lightbox"
+                className="w-auto h-full object-contain"
+                fill
+              />
+            </div>
+          ),
+        }}
       />
     </>
   );

@@ -1,28 +1,8 @@
-import { AppAssets } from "@/constants/AppAssets";
-import React from "react";
+import { libData } from "@/lib/data";
 import ImageGallery from "./ImageGallery";
 
 export default function PreWedding() {
-  const preWeddingImages = [
-    { src: AppAssets?.discoverOne },
-    { src: AppAssets?.discoverTwo },
-    { src: AppAssets?.discoverThree },
-    { src: AppAssets?.discoverOne },
-    { src: AppAssets?.discoverTwo },
-    { src: AppAssets?.discoverThree },
-    { src: AppAssets?.discoverOne },
-    { src: AppAssets?.discoverTwo },
-    { src: AppAssets?.discoverThree },
-    { src: AppAssets?.discoverOne },
-    { src: AppAssets?.discoverTwo },
-    { src: AppAssets?.discoverThree },
-    { src: AppAssets?.discoverOne },
-    { src: AppAssets?.discoverTwo },
-    { src: AppAssets?.discoverThree },
-    { src: AppAssets?.discoverOne },
-    { src: AppAssets?.discoverTwo },
-    { src: AppAssets?.discoverThree },
-  ];
+  const preWeddingImages = libData?.preWeddingImages;
 
   return (
     <section
@@ -77,7 +57,7 @@ export default function PreWedding() {
       </div>
 
       {/* Image Gallery Section */}
-      <div className=" py-10">
+      <div className="py-10">
         <ImageGallery images={preWeddingImages} />
       </div>
     </section>

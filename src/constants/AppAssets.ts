@@ -53,5 +53,6 @@ export class AppAssets {
     static discoverOne = '/ourWork/discover/one.webp';
     static discoverTwo = '/ourWork/discover/two.webp';
     static discoverThree = '/ourWork/discover/three.webp';
+    static discoverThree1 = '/ourWork/discover/three.jpg';
 
 }

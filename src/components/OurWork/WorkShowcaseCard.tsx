@@ -22,8 +22,8 @@ export default function WorkShowcaseCard({ item,href }: IWorkShowcaseCardProps) 
       {/* Image Layer */}
       <div className="overflow-hidden relative z-0 w-full">
         <Image
-          alt={`${item.label} showcase image`}
-          src={item.src}
+          alt={`${item?.label} showcase image`}
+          src={item?.src}
           width={500}
           height={500}
           className="group-hover:scale-125 transition-transform duration-500 w-full"
@@ -31,9 +31,9 @@ export default function WorkShowcaseCard({ item,href }: IWorkShowcaseCardProps) 
       </div>
 
       {/* Label */}
-      <div className="group text-center bg-white w-1/2 py-1.5 rounded-2xl font-semibold transition-all duration-300 text-primaryGolden absolute bottom-[8%] left-1/2 transform -translate-x-1/2 z-20">
+      <div className="group font-cormorant text-center bg-white w-1/2 py-1.5 rounded-2xl font-semibold transition-all duration-300 text-primaryGolden absolute bottom-[8%] left-1/2 transform -translate-x-1/2 z-20">
         <div className="relative inline-block">
-          <span>{item.label}</span>
+          <span>{item?.label}</span>
           <div className="h-[2px] w-2 bg-primaryGolden group-hover:w-full transition-all duration-300 mx-auto"></div>
         </div>
       </div>
