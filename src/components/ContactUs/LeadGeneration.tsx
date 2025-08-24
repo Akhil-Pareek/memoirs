@@ -10,13 +10,22 @@ import Button from "../common/Button";
 
 export default function LeadGeneration() {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const onlyAlphabets = /^[A-Za-z]+$/;
+  const onlyNumbers = /^[0-9]+$/; // only digits allowed
+
   const contactUsSchema = Yup.object({
-    firstName: Yup.string().required("Required"),
-    lastName: Yup.string().required("Required"),
+    firstName: Yup.string()
+      .required("Required")
+      .matches(onlyAlphabets, "Only alphabets are allowed"),
+    lastName: Yup.string()
+      .required("Required")
+      .matches(onlyAlphabets, "Only alphabets are allowed"),
     email: Yup.string()
       .required("Required")
       .matches(emailRegex, "Invalid email"),
-    phone: Yup.string().required("Required"),
+    phone: Yup.string()
+      .required("Required")
+      .matches(onlyNumbers, "Only numbers are allowed"),
     estimateCount: Yup.string().required("Required"),
     tellUs: Yup.string().required("Required"),
     location: Yup.string().required("Required"),
@@ -25,14 +34,14 @@ export default function LeadGeneration() {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "abc",
-      lastName: "def",
-      email: "akhil@gmail.com",
-      phone: "9876543210",
-      estimateCount: "12",
-      tellUs: "hey",
-      location: "jaipur",
-      dates: "30 nov",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      estimateCount: "",
+      tellUs: "",
+      location: "",
+      dates: "",
       error: "",
     },
     validationSchema: contactUsSchema,
@@ -63,37 +72,37 @@ export default function LeadGeneration() {
     {
       id: "firstName",
       type: "text",
-      placeholder: "First Name *",
+      placeholder: "First Name*",
     },
     {
       id: "lastName",
       type: "text",
-      placeholder: "Last Name *",
+      placeholder: "Last Name*",
     },
     {
       id: "email",
       type: "email",
-      placeholder: "Email *",
+      placeholder: "Email*",
     },
     {
       id: "phone",
       type: "phone",
-      placeholder: "Phone no *",
+      placeholder: "Phone no*",
     },
     {
       id: "estimateCount",
       type: "text",
-      placeholder: "Estimate Guest Count *",
+      placeholder: "Estimate Guest Count*",
     },
     {
       id: "location",
       type: "text",
-      placeholder: "Location of the wedding *",
+      placeholder: "Location of the wedding*",
     },
     {
       id: "dates",
       type: "text",
-      placeholder: "Event Dates *",
+      placeholder: "Event Dates*",
     },
     {
       id: "tellUs",
