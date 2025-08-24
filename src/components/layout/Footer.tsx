@@ -66,7 +66,7 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white py-16 space-y-10 font-cormorant">
       {/* Logo */}
-      <div className="flex justify-center">
+      <Link href="/" className="flex justify-center">
         <Image
           alt="Memoirs Photography Logo"
           src={AppAssets?.newLogo}
@@ -75,7 +75,7 @@ export default function Footer() {
           className="w-[50%] md:w-1/4 xl:w-[15%] mx-auto"
           priority
         />
-      </div>
+      </Link>
 
       <div className="flex flex-wrap lg:flex-nowrap justify-between lg:justify-center gap-10 md:w-[80%] mx-auto">
         {/* Contact Info */}

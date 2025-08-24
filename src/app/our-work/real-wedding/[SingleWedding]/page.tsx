@@ -1,11 +1,11 @@
 import Banner from "@/components/common/Banner";
 import ImageGallery from "@/components/OurWork/ImageGallery";
-import { weddingData } from "@/lib/data";
+import { libData } from "@/lib/data";
 
 export default async function page({ params }: any) {
   const coupleSlug = (await params)?.SingleWedding;
 
-  const matchedWedding = weddingData?.realWedding.find(
+  const matchedWedding = libData?.realWedding.find(
     (item) => item?.slug === coupleSlug
   );
 
