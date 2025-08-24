@@ -25,11 +25,9 @@ export default function GlobalLayout({ children }: IGlobalLayout) {
   }: any = modalState || {};
   return (
     <>
-      <main className="h-full">
-        <Header />
-        {children}
-        <Footer />
-      </main>
+      <Header />
+      <main className="min-h-screen">{children}</main>
+      <Footer />
       <InfoToaster label={label} type={type} />
     </>
   );

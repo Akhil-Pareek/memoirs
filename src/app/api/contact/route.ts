@@ -2,45 +2,119 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
-    try {
-        const { name, email, phone, message } = await req.json();
-        console.log("req", await req.json())
-        // Nodemailer setup
-        // const transporter = nodemailer.createTransport({
-        //     host: "mail.chirayuhospitaljaipur.com",
-        //     port: 465,
-        //     secure: true,
-        //     auth: {
-        //         user: "no-reply@chirayuhospitaljaipur.com",
-        //         pass: "9TOEOYSkjXT0bl0", // Make sure not to expose sensitive data in production
-        //     },
-        // });
+  try {
 
+    const body = await req.json();
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      estimateCount,
+      tellUs,
+      location,
+      dates,
+    } = body;
 
-        // Email details
-        // const mailOptions = {
-        //     from: 'Chirayu Hospital <no-reply@chirayuhospitaljaipur.com>',
-        //     to: "leads@chirayuhospitaljaipur.com",
-        //     subject: "Chirayu Cancer Hospital",
-        //     html: ` 
-        //         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-        //             <h2 style="text-align: center; color: #333;">New  Lead</h2>
-        //             <p>You have received a new lead from your contact form of chirayu cancer hospital website:</p>
-        //             <p><strong>Name:</strong> ${name}</p>
-        //             <p><strong>Email:</strong> ${email}</p>
-        //             <p><strong>Phone:</strong> ${phone}</p>
-        //             <p><strong>Message:</strong> ${message}</p>
-        //             <p>Please respond as soon as possible.</p>
-        //         </div>
-        //     `,
-        // };
+    // Configure Nodemailer
+    const transporter = nodemailer.createTransport({
+      host: process.env.host, // ✅ your domain's mail server
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.user, // ✅ updated to your domain's email
+        pass: process.env.password,   // 🔐 should be stored in environment variable in production
+      },
+    });
 
-        // await transporter.sendMail(mailOptions);
+    // Email content
+    const mailOptions = {
+      from: '"Memoirs Jaipur" <memoirsjaipur@gmail.com>', // ✅ updated "from"
+      to: "memoirsjaipur@gmail.com",                    // ✅ your email to receive leads
+      subject: "Memoirs - Lead",
+      html: `
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; background: #f4f4f6; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+  <div style="background-color: #736645; color: white; padding: 20px; border-radius: 8px 8px 0 0; text-align: center;">
+    <h2 style="margin: 0;"> New Lead</h2>
+  </div>
 
-        return NextResponse.json({ message: "Resume sent successfully" }, { status: 200 });
-    } catch (error) {
-        console.error(error);
-        return NextResponse.json({ message: "Failed to send email", error }, { status: 500 });
-    }
+  <div style="padding: 20px; background-color: white; border-radius: 0 0 8px 8px;">
+
+    <!-- Row 1: Full Name | Phone -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 8px; width: 50%;">
+        <div>
+          <p style="margin: 0; font-size: 13px; color: #736645;">Full Name</p>
+          <p style="margin: 4px 0; font-size: 16px;"><strong>${firstName} ${lastName}</strong></p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; width: 50%;">
+        <div>
+          <p style="margin: 0; font-size: 13px; color: #736645;">Phone</p>
+          <p style="margin: 4px 0; font-size: 16px;"><strong>${phone}</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Email | Estimate Count -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 8px; width: 50%;">
+        <div>
+          <p style="margin: 0; font-size: 13px; color: #736645;">Email</p>
+          <p style="margin: 4px 0; font-size: 16px;"><strong>${email}</strong></p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; width: 50%;">
+        <div>
+          <p style="margin: 0; font-size: 13px; color: #736645;">Estimate Count</p>
+          <p style="margin: 4px 0; font-size: 16px;"><strong>${estimateCount}</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;" />
+
+    <div>
+      <p style="margin: 0; font-size: 13px; color: #736645;">💬 Tell Us More</p>
+      <div style="background-color: #f4f4f6; padding: 12px; border-radius: 8px; margin-top: 6px; color: #333;">
+        ${tellUs}
+      </div>
+    </div>
+
+    <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;" />
+
+    <!-- Location -->
+<div style="display: flex; justify-content: space-between; margin-top: 20px; gap: 8px;">
+<div style="display: flex; align-items: center; gap: 12px; width: 50%;">
+  <div>
+    <p style="margin: 0; font-size: 13px; color: #736645;">Location</p>
+    <p style="margin: 4px 0; font-size: 16px;"><strong>${location}</strong></p>
+  </div>
+</div>
+
+  <div style="display: flex; align-items: center; gap: 8px; width: 50%;">
+    <div>
+      <p style="margin: 0; font-size: 13px; color: #736645;">Preferred Dates</p>
+      <p style="margin: 4px 0; font-size: 16px;"><strong>${dates}</strong></p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+`
+
+      ,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    return NextResponse.json({ message: "Lead sent successfully" }, { status: 200 });
+  } catch (error) {
+    console.error("Email send error:", error);
+    return NextResponse.json({ message: "Failed to send email", error }, { status: 500 });
+  }
 }
 

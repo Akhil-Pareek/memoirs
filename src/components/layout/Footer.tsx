@@ -10,6 +10,7 @@ import { PiInstagramLogoFill } from "react-icons/pi";
 
 export default function Footer() {
   const pathName = usePathname();
+
   const socialIcons = [
     {
       icon: <PiInstagramLogoFill className="w-5 h-5" />,
@@ -30,67 +31,85 @@ export default function Footer() {
       className: "hover:text-green-500 h-8 w-8",
     },
   ];
+
   const navLinks = [
     { href: "/", label: "HOME" },
     { href: "/our-work", label: "OUR WORK" },
     { href: "/about-us", label: "ABOUT US" },
     { href: "/contact-us", label: "CONTACT US" },
   ];
+
+  const contactItems = [
+    {
+      icon: <IoMail />,
+      href: "mailto:memoirsjaipur@gmail.com", // gmail spelling fix
+      text: "memoirsjaipur@gmail.com",
+    },
+    {
+      icon: <FaPhone />,
+      href: "tel:9024577771",
+      text: "9024577771",
+    },
+    {
+      icon: <FaPhone />,
+      href: "tel:8824388884",
+      text: "8824388884",
+    },
+    {
+      icon: <FaLocationDot />,
+      href: "https://www.google.com/maps/search/?api=1&query=Memoirs+Photography,+Basement,R,+Triambatul+apartment+9,+Yudhister+Marg,+C+Scheme,+Ashok+Nagar,+Jaipur,+Rajasthan+302001",
+      text: "Memoirs Photography R-9, Triambatul Apartment, Basement Yudhister Marg, C-Scheme Ashok Nagar, Jaipur, Rajasthan – 302001",
+      external: true,
+    },
+  ];
+
   return (
     <footer className="bg-black text-white py-16 space-y-10 font-cormorant">
-      <Image
-        alt="logo"
-        src={AppAssets?.newLogo}
-        width={1000}
-        height={1000}
-        className=" w-[50%] md:w-1/4 xl:w-[15%] mx-auto"
-      />
-      <div className=" flex flex-wrap lg:flex-nowrap justify-between lg:justify-center gap-10 md:w-[80%] mx-auto ">
+      {/* Logo */}
+      <div className="flex justify-center">
+        <Image
+          alt="Memoirs Photography Logo"
+          src={AppAssets?.newLogo}
+          width={1000}
+          height={1000}
+          className="w-[50%] md:w-1/4 xl:w-[15%] mx-auto"
+          priority
+        />
+      </div>
+
+      <div className="flex flex-wrap lg:flex-nowrap justify-between lg:justify-center gap-10 md:w-[80%] mx-auto">
         {/* Contact Info */}
-        <div className="lg:w-[33%] p-5 space-y-8">
-          <div className="flex items-center">
-            <span className="mr-2">
-              <IoMail />
-            </span>
-            <Link href="mailto:memoirsjaipur@gamil.com" className="text-sm">
-              memoirsjaipur@gamil.com
-            </Link>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">
-              <FaPhone />
-            </span>
-            <Link href="tel:9024577771" className="text-sm">
-              9024577771
-            </Link>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">
-              <FaPhone />
-            </span>
-            <Link href="tel:8824388884" className="text-sm">
-              8824388884
-            </Link>
-          </div>
+        <address className="lg:w-[33%] p-5 space-y-8 not-italic">
+          <p className="sr-only">Contact Information</p>
 
-          <div className="flex items-start">
-            <span className="mr-2 mt-1">
-              <FaLocationDot />
-            </span>
-            <Link
-              href="https://www.google.com/maps/search/?api=1&query=Memoirs+Photography,+Basement,R,+Triambatul+apartment+9,+Yudhister+Marg,+C+Scheme,+Ashok+Nagar,+Jaipur,+Rajasthan+302001"
-              target="_blank"
-              className="text-sm"
+          {contactItems.map((item, index) => (
+            <div
+              key={index}
+              className={`flex ${
+                item.icon?.type === FaLocationDot
+                  ? "items-start"
+                  : "items-center"
+              }`}
             >
-              Memoirs Photography, Basement, R, Triambatul apartment 9,
-              Yudhister Marg, C Scheme, Ashok Nagar, Jaipur, Rajasthan 302001
-            </Link>
-          </div>
-        </div>
+              <span className="mr-2 mt-1">{item.icon}</span>
+              <Link
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                className="text-sm 4xl:text-lg"
+                aria-label={item.text}
+              >
+                {item.text}
+              </Link>
+            </div>
+          ))}
+        </address>
 
-        {/* Pages */}
-        <div className="   w-full md:w-[40%] lg:w-[33%] border-gray-600 md:border-r lg:border-l md:text-center p-5 space-y-5">
-          <h4 className="text-lg font-semibold ">Pages</h4>
+        {/* Pages Navigation */}
+        <nav
+          className="w-full md:w-[40%] lg:w-[33%] border-gray-600 md:border-r lg:border-l md:text-center p-5 space-y-5"
+          aria-label="Footer Navigation"
+        >
+          <p className="text-lg font-semibold">Pages</p>
           <ul className="space-y-3">
             {navLinks.map((item, index) => (
               <li key={index}>
@@ -105,42 +124,27 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        {/* Newsletter */}
-        <div className="w-full md:w-[50%] lg:w-[33%] p-5">
-          <h4 className="text-lg font-semibold mb-4">Newsletter</h4>
-          <form className="space-y-2">
-            <input
-              type="email"
-              placeholder="Enter your e-mail"
-              className="w-full p-2 bg-transparent border-b border-white text-white placeholder-gray-400 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="w-full bg-white text-black py-2 hover:bg-gray-200 transition"
-            >
-              Submit
-            </button>
-          </form>
-          <div className="mt-4">
-            <h4 className="text-lg font-semibold mb-2 uppercase tracking-widest">
-              Follow Us
-            </h4>
-            <div className="flex items-center gap-4 mt-3  justify-start">
-              {socialIcons.map((item: any, index: number) => (
-                <Link
-                  target="_blank"
-                  key={index}
-                  href={item?.url}
-                  className={`text-gray-300  hover:scale-125 cursor-pointer transition-all duration-500 ${item?.className} `}
-                >
-                  {item?.icon}
-                </Link>
-              ))}
-            </div>
+        {/* Social Media */}
+        <section className="w-full md:w-[50%] lg:w-[33%] p-5">
+          <p className="text-lg font-semibold mb-2 uppercase tracking-widest">
+            Follow Us
+          </p>
+          <div className="flex items-center gap-4 mt-3 justify-start">
+            {socialIcons.map((item, index) => (
+              <Link
+                target="_blank"
+                key={index}
+                href={item?.url}
+                aria-label={`Visit our ${item?.name} page`}
+                className={`text-gray-300 hover:scale-125 cursor-pointer transition-all duration-500 ${item?.className}`}
+              >
+                {item?.icon}
+              </Link>
+            ))}
           </div>
-        </div>
+        </section>
       </div>
     </footer>
   );

@@ -46,7 +46,7 @@ export default function Button({
   const sharedClasses = `
     py-2.5 px-4  text-sm font-bold cursor-pointer flex items-center justify-center gap-2 transition-all duration-300",
   whitespace-nowrap focus:outline-none focus-visible:ring-2
-    disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105
+    disabled:opacity-50 disabled:cursor-not-allowed gradient-hover-slide
    ${variantStyles[variant]}
    ${isDisabled && "opacity-50 cursor-not-allowed"}
     ${className}`;

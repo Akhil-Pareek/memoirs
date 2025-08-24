@@ -9,7 +9,11 @@
   --color-neutralGray: #5d5d5d;
   --color-darkGray: #2e2e2e;
   --color-darkMutedRed: #3f2021;
+  --color-scarletRed: #d1192e;
   --animate-movenav: movenav 1s ease-in-out forwards;
+   --breakpoint-3xl: 120rem;
+   --breakpoint-4xl: 160rem;
+   --breakpoint-5xl: 240rem;
 }
 
 @keyframes movenav {
@@ -139,7 +143,7 @@ body {
 
 /* Success Toast */
 .Toastify__toast--success {
-  background-color: green !important;
+  background-color: #736645 !important;
   color: white !important;
 }
 
@@ -150,4 +154,53 @@ body {
 }
 
 
-/* -------------------------------------------------------- */
+/* -------------------------scrollbar-------------------- */
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: #000;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #736645;
+  border-radius: 100vh;
+  border: 3px solid #736645;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #736645;
+}
+
+/* ------------------------------------ */
+.gradient-hover-slide {
+  position: relative;
+  overflow: hidden;
+  background-color: #736645; /* fallback or base color */
+  color: white;
+}
+
+.gradient-hover-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(to right,#f4f4f6 , #736645 );
+  transition: left 0.5s ease-in-out;
+  z-index: 0;
+}
+
+.gradient-hover-slide:hover::before {
+  left: 0;
+}
+
+.gradient-hover-slide > * {
+  position: relative;
+  z-index: 1;
+}
+
